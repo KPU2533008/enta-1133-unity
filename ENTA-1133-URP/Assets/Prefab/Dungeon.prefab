@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2591525006524828325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6348853641956404540}
+  - component: {fileID: 7122463226507416565}
+  m_Layer: 0
+  m_Name: Dungeon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6348853641956404540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591525006524828325}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7122463226507416565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2591525006524828325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1949b4782bbebd64885be83167f5c44b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomPrefabs:
+  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
+  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
+  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
+  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
+  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
+  - {fileID: 4424525969474946087, guid: 06e0e3ce55e84ed42afd81ed9faf2208, type: 3}
+  - {fileID: 4424525969474946087, guid: 06e0e3ce55e84ed42afd81ed9faf2208, type: 3}
+  - {fileID: 4424525969474946087, guid: 06e0e3ce55e84ed42afd81ed9faf2208, type: 3}
+  - {fileID: 7577988873036376672, guid: ae6733a62d6768e42af0baaf0272f7e0, type: 3}
+  - {fileID: 7577988873036376672, guid: ae6733a62d6768e42af0baaf0272f7e0, type: 3}
+  - {fileID: 1786672377914671248, guid: 4d917e7bc1cae104ba70b2a7a655e238, type: 3}
+  RoomSize: 7
+  DungeonSize: 5

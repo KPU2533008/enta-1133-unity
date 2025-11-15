@@ -1,2 +1,6 @@
 # enta-1133-unity
-bingus
+Controls
+
+Mouse - Look
+WASD - Move
+E - Interact with current room
