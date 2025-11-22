@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnLook(InputValue value) {
+		if ( Cursor.lockState == CursorLockMode.None )
+			return;
+
 		Vector2 lookVector = value.Get<Vector2>();
 		transform.rotation *= Quaternion.Euler(0, lookVector.x * Time.deltaTime * LOOK_MULT, 0);
 
@@ -56,8 +59,11 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update() {
-		Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.lockState = CursorLockMode.Locked;
 		MoveDirection = ( transform.rotation * Vector3.forward * MoveVector.y ) + ( transform.rotation * Vector3.right * MoveVector.x );
+		if ( Input.GetKeyDown(KeyCode.Tab) ) {
+			Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Locked : CursorLockMode.None;
+		}
 	}
 
 	private void OnTriggerEnter(Collider other) {

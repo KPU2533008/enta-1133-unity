@@ -10,6 +10,11 @@ public class MonoDungeonGameRunner : MonoBehaviour {
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start() {
+
+	}
+
+	public void StartGame() {
+		Cursor.lockState = CursorLockMode.Locked;
 		transform.position = Vector3.zero;
 		SetupMap();
 		SpawnPlayer();
