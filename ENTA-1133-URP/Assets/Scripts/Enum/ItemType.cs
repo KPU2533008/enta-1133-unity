@@ -1,5 +1,5 @@
 ﻿namespace DungeonGame.Enum {
-	internal enum ItemType {
+	public enum ItemType {
 		Consumable = 0,
 		Weapon = 0,
 	}

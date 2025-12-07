@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace DungeonGame.Object {
-	internal class Dice {
+	public class Dice {
 
 		private readonly int faces;
 		private readonly int numDice;

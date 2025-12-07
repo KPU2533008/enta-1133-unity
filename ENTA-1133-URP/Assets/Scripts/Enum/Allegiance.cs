@@ -1,5 +1,5 @@
 ﻿namespace DungeonGame.Enum {
-	internal enum Allegiance {
+	public enum Allegiance {
 		Friendly = 0,
 		Hostile = 1,
 	}

@@ -1,5 +1,5 @@
 ﻿namespace DungeonGame.Enum {
-	internal enum CombatAction {
+	public enum CombatAction {
 		Attack = 0,
 		UseItem = 1,
 		Pass = 2,

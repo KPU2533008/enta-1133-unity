@@ -185,7 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0af5f33d46078418f9d2321fb00301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Name>k__BackingField: Player
+  <MaxHP>k__BackingField: 20
+  <HP>k__BackingField: 20
   _camera: {fileID: 677278514445764664}
+  WalkSpeed: 2.5
 --- !u!114 &3212149209813949438
 MonoBehaviour:
   m_ObjectHideFlags: 0

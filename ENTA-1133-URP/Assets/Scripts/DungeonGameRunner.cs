@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace DungeonGame {
-	internal class DungeonGameRunner : MonoBehaviour {
+	public class DungeonGameRunner : MonoBehaviour {
 
 		//private Dungeon dungeon;
 		//private DungeonRoom currentRoom;
@@ -23,8 +23,8 @@ namespace DungeonGame {
 
 			//Team playerTeam = new([player]);
 
-			//Game.dialogWindow.ClearText();
-			//Game.dialogWindow.ClearOptions();
+			//Game.DialogBox.ClearText();
+			//Game.DialogBox.ClearOptions();
 			//Game.inventory.Clear();
 
 			//player.inventoryChanged.Connect((bool _) => {
@@ -64,7 +64,7 @@ namespace DungeonGame {
 				{InventoryAction.Inspect, () => {
 					//Item? item = player.PromptSelectItem(typeof(Item));
 					//if (item != null) {
-					//	Game.dialogWindow.ShowDialog(item.Description);
+					//	Game.DialogBox.ShowDialog(item.Description);
 					//}
 					PromptInventoryAction();
 				}},
@@ -82,7 +82,7 @@ namespace DungeonGame {
 
 		private void PromptWorldAction() {
 			//if ( !player.IsAlive ) {
-			//	Game.dialogWindow.ShowDialog("You have been defeated in battle.\n\nGAME OVER.", false);
+			//	Game.DialogBox.ShowDialog("You have been defeated in battle.\n\nGAME OVER.", false);
 			//	return;
 			//}
 
@@ -91,8 +91,8 @@ namespace DungeonGame {
 				//options.Add(StringUtil.AddSpaces(worldAction.ToString()));
 			}
 
-			//Game.dialogWindow.ShowDialog("[ World ]\nWhat would you like to do?", [.. options]);
-			//Game.dialogWindow.optionChosen.Once((int optionNum) => {
+			//Game.DialogBox.ShowDialog("[ World ]\nWhat would you like to do?", [.. options]);
+			//Game.DialogBox.optionChosen.Once((int optionNum) => {
 			//	WorldAction action = (WorldAction)optionNum;
 			//	Task.Run(() => {
 			//		worldActions[action]();
@@ -106,8 +106,8 @@ namespace DungeonGame {
 			//	options.Add(StringUtil.AddSpaces(inventoryAction.ToString()));
 			//}
 
-			//Game.dialogWindow.ShowDialog("Inventory Management", [.. options]);
-			//Game.dialogWindow.optionChosen.Once((int optionNum) => {
+			//Game.DialogBox.ShowDialog("Inventory Management", [.. options]);
+			//Game.DialogBox.optionChosen.Once((int optionNum) => {
 			//	InventoryAction action = (InventoryAction)optionNum;
 			//	Task.Run(() => {
 			//		inventoryActions[action]();
@@ -116,15 +116,15 @@ namespace DungeonGame {
 		}
 
 		private void PromptMoveDirection() {
-			//Game.dialogWindow.ShowDialog("In which direction would you like to explore?", ["North", "South", "East", "West"]);
-			//Game.dialogWindow.optionChosen.Once((int optionNum) => {
+			//Game.DialogBox.ShowDialog("In which direction would you like to explore?", ["North", "South", "East", "West"]);
+			//Game.DialogBox.optionChosen.Once((int optionNum) => {
 			//	Task.Run(() => {
 			//		DungeonRoom? nextRoom = currentRoom.GetNextRoom((MoveDirection)optionNum);
 
 			//		if ( nextRoom != null ) {
 			//			MoveToRoom(nextRoom);
 			//		} else {
-			//			Game.dialogWindow.ShowDialog("You look, but there doesn't seem to be another room in this direction.");
+			//			Game.DialogBox.ShowDialog("You look, but there doesn't seem to be another room in this direction.");
 			//			PromptWorldAction();
 			//		}
 			//	});
@@ -139,8 +139,8 @@ namespace DungeonGame {
 		}
 
 		public void RunGame() {
-			//Game.dialogWindow.ShowDialog("You awake in a strange place you've never seen before. Your head is fuzzy, and you don't remember how you got here.");
-			//Game.dialogWindow.ShowDialog("You can't remember your name either, but you think that it's...\n(TYPE YOUR NAME)", false);
+			//Game.DialogBox.ShowDialog("You awake in a strange place you've never seen before. Your head is fuzzy, and you don't remember how you got here.");
+			//Game.DialogBox.ShowDialog("You can't remember your name either, but you think that it's...\n(TYPE YOUR NAME)", false);
 
 			//UserInputService.GetValidInput((string input, out bool isValid) => {
 			//	isValid = input.Length > 0;
@@ -151,14 +151,14 @@ namespace DungeonGame {
 			//CombatantInfoCard playerInfoCard = new(player);
 			//playerInfoCard.SetPosition(new(0.5f, -( playerInfoCard.container.AbsoluteSize.X + 2 ) / 2, 1, -4));
 
-			//Game.dialogWindow.ShowDialog($"{player.Name}... You think your name is {player.Name}!");
+			//Game.DialogBox.ShowDialog($"{player.Name}... You think your name is {player.Name}!");
 
 			//player.GiveItem(new RustySword());
 			//player.GiveItem(new Bandage());
 			//player.GiveItem(new Bandage());
 
-			//Game.dialogWindow.ShowDialog($"You feel something strapped to your thigh. Something cold. You look down and see an old and rusty sword hanging loosely from your hip.");
-			//Game.dialogWindow.ShowDialog($"You look around, dizzy and dazed, and try to identify your surroundings. You seem to be in some kind of very old dungeon.");
+			//Game.DialogBox.ShowDialog($"You feel something strapped to your thigh. Something cold. You look down and see an old and rusty sword hanging loosely from your hip.");
+			//Game.DialogBox.ShowDialog($"You look around, dizzy and dazed, and try to identify your surroundings. You seem to be in some kind of very old dungeon.");
 
 			//currentRoom.OnEntered(player);
 			PromptWorldAction();

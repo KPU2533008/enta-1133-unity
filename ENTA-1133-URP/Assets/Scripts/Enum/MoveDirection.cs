@@ -1,5 +1,5 @@
 ﻿namespace DungeonGame.Enum {
-	internal enum MoveDirection {
+	public enum MoveDirection {
 		North = 0,
 		South = 1,
 		East = 2,

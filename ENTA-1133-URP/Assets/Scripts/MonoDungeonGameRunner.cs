@@ -1,3 +1,6 @@
+using DungeonGame;
+using DungeonGame.Combat;
+using DungeonGame.Object;
 using UnityEngine;
 
 public class MonoDungeonGameRunner : MonoBehaviour {
@@ -14,7 +17,6 @@ public class MonoDungeonGameRunner : MonoBehaviour {
 	}
 
 	public void StartGame() {
-		Cursor.lockState = CursorLockMode.Locked;
 		transform.position = Vector3.zero;
 		SetupMap();
 		SpawnPlayer();
@@ -25,11 +27,13 @@ public class MonoDungeonGameRunner : MonoBehaviour {
 		_dungeon = Instantiate(dungeonMapPrefab, transform);
 		_dungeon.transform.position = Vector3.zero;
 		_dungeon.GenerateMap();
+		Game.Dungeon = _dungeon;
 	}
 
 	private void SpawnPlayer() {
 		_playerController = Instantiate(playerControllerPrefab, transform);
-		_playerController.Setup();
+		Team playerTeam = new(new() { _playerController });
+		Game.Player = _playerController;
 	}
 
 	private void RunGame() {

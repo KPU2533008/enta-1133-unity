@@ -1,10 +1,13 @@
+using DungeonGame;
+using DungeonGame.Object;
+using System.Collections;
 using UnityEngine;
 
 public class DungeonRoom : MonoBehaviour {
 
 	[SerializeField] private GameObject NorthDoorway, EastDoorway, SouthDoorway, WestDoorway;
 	private DungeonRoom _north, _east, _south, _west;
-	private bool isVisited = false;
+	protected bool isVisited = false;
 
 	public void SetRooms(DungeonRoom north, DungeonRoom east, DungeonRoom south, DungeonRoom west) {
 		_north = north;
@@ -18,18 +21,17 @@ public class DungeonRoom : MonoBehaviour {
 		WestDoorway.SetActive(_west == null);
 	}
 
+	public virtual string GetRoomDescription() {
+		return "Room";
+	}
+
 	public virtual void OnEntered(PlayerController player) {
-		Debug.Log($"You find yourself in a room with a layout that's {( isVisited ? "" : "un" )}familiar to you. You've {( isVisited ? "" : "not " )}seen this place before...");
 		isVisited = true;
 	}
 
-	public virtual void OnSearched(PlayerController player) {
-		Debug.Log("You scour the room thoroughly, hoping to find something useful...");
-	}
+	public virtual void OnSearched(PlayerController player) { }
 
-	public virtual void OnExited(PlayerController player) {
-		Debug.Log("You leave the room, content with what you've seen, and press onward.");
-	}
+	public virtual void OnExited(PlayerController player) { }
 
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start() {

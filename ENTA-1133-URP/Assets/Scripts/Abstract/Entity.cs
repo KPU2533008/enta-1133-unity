@@ -1,7 +1,8 @@
-﻿namespace DungeonGame.Abstract {
-	internal abstract class Entity {
-		public string Name { get; protected set; } = "Entity";
+﻿using UnityEngine;
 
+namespace DungeonGame.Abstract {
+	public class Entity : MonoBehaviour {
+		[field: SerializeField] public string Name { get; private set; } = "Entity";
 		public virtual void Destroy() { }
 	}
 }

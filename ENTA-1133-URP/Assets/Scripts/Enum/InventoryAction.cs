@@ -1,5 +1,5 @@
 ﻿namespace DungeonGame.Enum {
-	internal enum InventoryAction {
+	public enum InventoryAction {
 		Use = 0,
 		Inspect = 1,
 		Drop = 2,

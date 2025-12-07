@@ -2,10 +2,6 @@ using UnityEditor;
 using UnityEngine;
 
 public class UI_TitleScreen : MonoBehaviour {
-	public void StartGame() {
-		this.gameObject.SetActive(false);
-	}
-
 	public void QuitGame() {
 #if UNITY_EDITOR
 		EditorApplication.ExitPlaymode();

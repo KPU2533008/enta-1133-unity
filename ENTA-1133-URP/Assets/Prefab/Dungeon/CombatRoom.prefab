@@ -222,7 +222,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ca9fe22e70495b14383d65890bfafaf1, type: 2}
     - target: {fileID: 4391035684136658020, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.2017283
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4391035684136658020, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
       propertyPath: m_LocalPosition.y
@@ -230,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4391035684136658020, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 31.278072
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4391035684136658020, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
       propertyPath: m_LocalRotation.w
@@ -551,6 +551,12 @@ MonoBehaviour:
   EastDoorway: {fileID: 4571973338431378283}
   SouthDoorway: {fileID: 3291319191980860207}
   WestDoorway: {fileID: 5262578966758352899}
+  CombatPrefab: {fileID: 8775264053836495571, guid: eb30d10b60d68d64b9005b523e78e3dc, type: 3}
+  CombatantWeights:
+    SerializedKeys:
+    - {fileID: 6623662118789855411, guid: aaa690f92c5562a49814ccf49c6f28d5, type: 3}
+    - {fileID: 1185563025619903701, guid: 9ec21ea142cb40344b45ea685e4d865a, type: 3}
+    SerializedValues: 0400000001000000
 --- !u!1 &3291319191980860207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6411262459245607312, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
