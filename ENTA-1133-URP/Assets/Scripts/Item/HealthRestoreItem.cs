@@ -7,9 +7,7 @@ using UnityEngine;
 namespace DungeonGame.Item {
 	public class HealthRestoreItem : Consumable {
 
-		public HealthRestoreItem() {
-			TargetAllegiance = Allegiance.Friendly;
-		}
+		public override Allegiance TargetAllegiance => Allegiance.Friendly;
 
 		public override IEnumerator OnUse(Combatant user, Combatant target) {
 			yield return base.OnUse(user, target);

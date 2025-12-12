@@ -7,10 +7,8 @@ using UnityEngine;
 namespace DungeonGame.Item {
 	public class RevivalItem : Consumable {
 
-		public RevivalItem() {
-			TargetAllegiance = Allegiance.Friendly;
-			TargetMortality = Mortality.Dead;
-		}
+		public override Allegiance TargetAllegiance => Allegiance.Friendly;
+		public override Mortality TargetMortality => Mortality.Dead;
 
 		public override IEnumerator OnUse(Combatant user, Combatant target) {
 			yield return base.OnUse(user, target);

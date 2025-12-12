@@ -1,8 +1,9 @@
+using DungeonGame;
 using UnityEngine;
 
 public class Dungeon : MonoBehaviour {
 
-	[SerializeField] private DungeonRoom[] RoomPrefabs;
+	[SerializeField] private DungeonRoomWeightTable Rooms;
 	[SerializeField] private int RoomSize = 7;
 	[SerializeField] private int DungeonSize = 5;
 
@@ -33,16 +34,24 @@ public class Dungeon : MonoBehaviour {
 			DestroyMap();
 
 		dungeonMap = new DungeonRoom[DungeonSize, DungeonSize];
+		int combatRooms = 0;
 
 		for ( int z = 0; z < DungeonSize; z++ ) {
 			for ( int x = 0; x < DungeonSize; x++ ) {
 				Vector3 roomPos = new(x * RoomSize, 0, z * RoomSize);
-				var roomInstance = Instantiate(RoomPrefabs[Random.Range(0, RoomPrefabs.Length)], transform);
+				DungeonRoom room = Rooms.Roll();
+				var roomInstance = Instantiate(room, transform);
 				roomInstance.transform.position = roomPos;
 				roomInstance.name += $"[{z},{x}]";
 				dungeonMap[z, x] = roomInstance;
+				if ( room is CombatRoom ) {
+					combatRooms++;
+				}
 			}
 		}
+
+		Game.CombatRooms = combatRooms;
+		Game.ClearedCombatRooms = 0;
 
 		/*
 		for ( int i = 0; i < DungeonSize * 1.5; i++ ) {
@@ -72,7 +81,7 @@ public class Dungeon : MonoBehaviour {
 		for ( int x = 0; x < dungeonMap.GetLength(0); x++ ) {
 			for ( int z = 0; z < dungeonMap.GetLength(1); z++ ) {
 				DungeonRoom currentRoom = dungeonMap[x, z];
-
+				Destroy(currentRoom);
 			}
 		}
 	}

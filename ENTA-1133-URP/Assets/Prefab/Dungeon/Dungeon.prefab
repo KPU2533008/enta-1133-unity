@@ -44,17 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1949b4782bbebd64885be83167f5c44b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RoomPrefabs:
-  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
-  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
-  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
-  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
-  - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
-  - {fileID: 4424525969474946087, guid: 06e0e3ce55e84ed42afd81ed9faf2208, type: 3}
-  - {fileID: 4424525969474946087, guid: 06e0e3ce55e84ed42afd81ed9faf2208, type: 3}
-  - {fileID: 4424525969474946087, guid: 06e0e3ce55e84ed42afd81ed9faf2208, type: 3}
-  - {fileID: 7577988873036376672, guid: ae6733a62d6768e42af0baaf0272f7e0, type: 3}
-  - {fileID: 7577988873036376672, guid: ae6733a62d6768e42af0baaf0272f7e0, type: 3}
-  - {fileID: 1786672377914671248, guid: 4d917e7bc1cae104ba70b2a7a655e238, type: 3}
+  Rooms:
+    SerializedKeys:
+    - {fileID: 1482047800854970550, guid: 66838a5713a4e194cb09e98a937a9b21, type: 3}
+    - {fileID: 4424525969474946087, guid: 06e0e3ce55e84ed42afd81ed9faf2208, type: 3}
+    - {fileID: 7577988873036376672, guid: ae6733a62d6768e42af0baaf0272f7e0, type: 3}
+    - {fileID: 1786672377914671248, guid: 4d917e7bc1cae104ba70b2a7a655e238, type: 3}
+    SerializedValues: 0a000000030000000300000001000000
   RoomSize: 7
   DungeonSize: 5

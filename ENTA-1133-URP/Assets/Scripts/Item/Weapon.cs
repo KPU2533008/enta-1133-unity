@@ -26,6 +26,8 @@ namespace DungeonGame.Item {
 			}
 
 			yield return new WaitUntil(() => !Game.DialogBox.IsShowing);
+			Game.DialogBox.ShowDialog($"{victimName}'s HP is now {victim.HP}/{victim.MaxHP}.");
+			yield return new WaitUntil(() => !Game.DialogBox.IsShowing);
 		}
 
 		public override IEnumerator OnUse(Combatant user, Combatant target) {

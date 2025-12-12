@@ -30,19 +30,14 @@ namespace DungeonGame.Object {
 
 		public delegate bool ItemSelectValidator(AItem item);
 
-		public void PromptSelectItem(Type itemType, ItemSelectValidator onSelect, Action? onCancel = null) {
-			Debug.Log("PLAYER IS SELECTING ITEM");
-			// TODO: We need an inventory UI
-			AItem? selectedItem = null;
-			Game.DialogBox.ShowDialog($"Choose a {itemType.ToString()} to use.");
-			//bool success = onSelect(selectedItem);
-			//if ( !success ) {
-			//	Game.DialogBox.ShowDialog($"You cannot pick this item for this action.");
-			//}
+		public IEnumerator PromptSelectItem(string prompt, Type itemType, ItemSelectValidator onSelect, Action? onCancel = null) {
+			Game.DialogBox.ShowDialog(prompt);
+			yield return new WaitUntil(() => !Game.DialogBox.IsShowing);
+			Game.InventoryMenu.PromptItemSelection(inventory.ToArray(), itemType, onSelect, onCancel);
 		}
 
-		public void PromptSelectItemForUse(Type itemType, ItemSelectValidator onSelect, Action? onCancel = null) {
-			PromptSelectItem(itemType, (AItem selectedItem) => {
+		public IEnumerator PromptSelectItemForUse(string prompt, Type itemType, ItemSelectValidator onSelect, Action? onCancel = null) {
+			yield return PromptSelectItem(prompt, itemType, (AItem selectedItem) => {
 				if ( !CanUseItem(selectedItem) ) {
 					return false;
 				}
@@ -54,69 +49,51 @@ namespace DungeonGame.Object {
 		 * Prompt the player to drop an item in their inventory.
 		 * Do not allow them to drop the only weapon they have.
 		 */
-		public void PromptDropItem() {
-			/*
-			AItem? chosenItem;
+		public IEnumerator PromptDropItem() {
+			int numWeapons = 0;
 
-			while ( true ) {
-				chosenItem = PromptSelectItem(typeof(AItem));
-
-				if ( chosenItem == null || !chosenItem.GetType().IsSubclassOf(typeof(AWeapon)) ) {
-					break;
-				} else if ( chosenItem.GetType().IsSubclassOf(typeof(AWeapon)) ) {
-					int numWeapons = 0;
-
-					foreach ( AItem item in inventory ) {
-						if ( item is AWeapon )
-							numWeapons++;
-					}
-
-					if ( numWeapons <= 1 )
-						Game.DialogBox.ShowDialog($"You can't throw away your only weapon!", true);
-					else
-						break;
-				}
-
+			foreach ( AItem item in inventory ) {
+				if ( item is Weapon )
+					numWeapons++;
 			}
 
-			if ( chosenItem != null ) {
-				TakeItem(chosenItem);
-			}
-
-			Game.DialogBox.ClearText();
-			*/
+			Type allowedItems = numWeapons > 1 ? typeof(AItem) : typeof(Consumable);
+			yield return PromptSelectItem("Please select an item to drop.", allowedItems, (AItem item) => {
+				TakeItem(item);
+				return true;
+			});
 		}
 
-		public int GiveItem(AItem item) {
-			if ( inventory.Contains(item) )
-				return -1; // ??? hax or im bad
+		public bool HasItem(AItem item) {
+			return inventory.Contains(item);
+		}
+
+		public IEnumerator GiveItem(AItem item) {
+			if ( HasItem(item) ) {
+				yield return true;
+			}
 
 			/*
 			* We're nice and we give the user the option to throw
 			* away an item if their inventory is full.
 			*/
-			//if ( inventory.Count >= INVENTORY_SIZE ) {
-			//	Game.DialogBox.ShowDialog($"Your inventory is full. Would you like to throw away an item to make space?", new string[] { "Yes", "No" });
-			//	bool doPromptDropItem = false;
+			if ( inventory.Count >= INVENTORY_SIZE ) {
+				Game.DialogBox.ShowDialog($"Your inventory is full. Would you like to throw away an item to make space?");
+				yield return new WaitUntil(() => !Game.DialogBox.IsShowing);
+				yield return PromptDropItem();
+				yield return new WaitUntil(() => !Game.InventoryMenu.IsShowing);
 
-			//	Game.DialogBox.OptionChosen.Once((int optionNum) => {
-			//		doPromptDropItem = optionNum == 0;
-			//	});
-			//	Game.DialogBox.OptionChosen.Wait();
+			}
 
-			//	if ( doPromptDropItem )
-			//		PromptDropItem();
+			if ( inventory.Count < INVENTORY_SIZE ) {
+				inventory.Add(item);
+			}
 
-			//	if ( inventory.Count >= INVENTORY_SIZE )
-			//		return -2;
-			//}
-
-			inventory.Add(item);
-			return 0;
+			yield return true;
 		}
 
 		public int TakeItem(AItem item) {
-			if ( !inventory.Contains(item) )
+			if ( !HasItem(item) )
 				return -1;
 
 			inventory.Remove(item);
@@ -148,35 +125,36 @@ namespace DungeonGame.Object {
 		}
 
 		public override void SelectWeapon(Selector<Weapon> select) {
-			PromptSelectItemForUse(typeof(Weapon), (AItem item) => {
+			StartCoroutine(PromptSelectItemForUse("Choose a weapon to attack with.", typeof(Weapon), (AItem item) => {
 				select(item as Weapon);
 				return true;
-			});
+			}, () => { select(null); }));
 		}
 
 		public override void SelectConsumable(Selector<Consumable> select) {
-			PromptSelectItemForUse(typeof(Consumable), (AItem item) => {
+			StartCoroutine(PromptSelectItemForUse("Choose an item to use.", typeof(Consumable), (AItem item) => {
 				TakeItem(item);
 				select(item as Consumable);
 				return true;
-			});
+			}, () => { select(null); }));
 		}
 
 		public override void SelectTarget(Combatant[] validTargets, Selector<Combatant> select) {
-			//List<string> options = new();
+			List<string> options = new();
 
-			//foreach ( Combatant target in validTargets ) {
-			//	options.Add(target.GetFullName());
-			//}
+			foreach ( Combatant target in validTargets ) {
+				options.Add(target.GetFullName());
+			}
+			options.Add("Cancel...");
 
-			//int chosenTargetNum = 0;
-
-			//Game.DialogBox.ShowDialog($"Now choose a target for this action!", options.ToArray());
-			//yield return SignalExtensions.WaitForSignal(Game.DialogBox.OptionChosen, optionNum => {
-			//	chosenTargetNum = optionNum;
-			//});
-
-			//select(validTargets[chosenTargetNum]);
+			Game.DialogBox.ShowDialog($"Now choose a target for this action!", options.ToArray());
+			Game.DialogBox.OptionChosen.Once((int optionNum) => {
+				if ( optionNum == options.Count - 1 ) {
+					select(null);
+					return;
+				}
+				select(validTargets[optionNum]);
+			});
 		}
 
 		void OnMove(InputValue value) {

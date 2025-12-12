@@ -12,15 +12,12 @@ namespace DungeonGame.Item {
 		[SerializeField] private int Faces = 6;
 		[SerializeField] public string Description = "A regular item. It doesn't do anything.";
 
-		public Allegiance TargetAllegiance { get; protected set; } = Allegiance.Hostile;
-		public Mortality TargetMortality { get; protected set; } = Mortality.Alive;
+		public virtual Allegiance TargetAllegiance => Allegiance.Hostile;
+		public virtual Mortality TargetMortality => Mortality.Alive;
 
-		protected readonly Dice dice;
+		protected Dice dice;
+		public string DieType => dice.GetDieType();
 		public int LastRoll => dice.GetLastRoll();
-
-		public AItem() {
-			dice = new(Faces, NumDice);
-		}
 
 		public int Roll() {
 			return dice.Roll();
@@ -28,5 +25,8 @@ namespace DungeonGame.Item {
 
 		public abstract IEnumerator OnUse(Combatant user, Combatant target);
 
+		void Awake() {
+			dice = new(Faces, NumDice);
+		}
 	}
 }

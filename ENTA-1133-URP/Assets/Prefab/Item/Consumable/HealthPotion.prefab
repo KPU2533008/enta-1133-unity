@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Red Potion
-  NumDice: 6
+  NumDice: 7
   Faces: 2
   Description: A ruby red healing elixir in a pristine glass bottle. Restores @DIE_TYPE
     HP when used.

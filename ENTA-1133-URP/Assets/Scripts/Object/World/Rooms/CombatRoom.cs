@@ -24,12 +24,12 @@ public class CombatRoom : DungeonRoom {
 		System.Random rng = new();
 		int numEnemies = rng.Next(0, 2) + 1;
 
-		Dictionary<Type, int> enemyCounts = new();
+		Dictionary<string, int> enemyCounts = new();
 		List<Combatant> enemies = new();
 
 		for ( int i = 0; i < numEnemies; i++ ) {
 			CpuCombatant enemy = PickRandomCombatant();
-			Type type = enemy.GetType();
+			string type = enemy.Name;
 
 			if ( !enemyCounts.ContainsKey(type) ) {
 				enemyCounts[type] = 0;
@@ -40,9 +40,9 @@ public class CombatRoom : DungeonRoom {
 		}
 
 		{
-			Dictionary<Type, int> encountered = new();
+			Dictionary<string, int> encountered = new();
 			foreach ( Combatant enemy in enemies ) {
-				Type type = enemy.GetType();
+				string type = enemy.Name;
 
 				if ( enemyCounts[type] < 2 )
 					continue;

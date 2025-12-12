@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Holy Hand Grenade of Antioch
-  NumDice: 1
-  Faces: 6
+  NumDice: 5
+  Faces: 3
   Description: '"O'' Lord, bless this thy hand grenade, that with it thou mayst blow
-    thine enemies to tiny bits, in thy mercy."'
+    thine enemies to tiny bits, in thy mercy." -Saint Attila'
   UsageText: '@USER takes out a @ITEM, pulls out the Holy Pin, counts to three, and
     lobs it at @TARGET!'

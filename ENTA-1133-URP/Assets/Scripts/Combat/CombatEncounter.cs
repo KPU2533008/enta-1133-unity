@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static DungeonGame.Combat.Combatant;
 
 namespace DungeonGame.Combat {
@@ -86,7 +87,7 @@ namespace DungeonGame.Combat {
 				yield return chosenItem.OnUse(combatant, chosenTarget);
 
 				if ( !chosenTarget.IsAlive && wasTargetAlive ) {
-					Game.DialogBox.ShowDialog(chosenTarget.GetDefeatMessage());
+					Game.DialogBox.ShowDialog(chosenTarget.GetDefeatMessage().Replace("@SELF", chosenTarget.GetFullName()));
 					yield return new WaitUntil(() => !Game.DialogBox.IsShowing);
 				}
 			}
@@ -100,12 +101,21 @@ namespace DungeonGame.Combat {
 
 		void Start() { }
 
-		private void OnDestroy() {
+		void OnDestroy() {
 			foreach ( Team team in teams ) {
 				foreach ( Combatant combatant in team.GetMembers(Mortality.Any) ) {
 					if ( combatant is CpuCombatant cpu ) {
 						Destroy(cpu.gameObject);
 					}
+				}
+			}
+
+			if ( Game.Player.HP <= 0 ) {
+				SceneManager.LoadScene("GameOver");
+			} else {
+				Game.ClearedCombatRooms++;
+				if ( Game.ClearedCombatRooms == Game.CombatRooms ) {
+					SceneManager.LoadScene("GameWin");
 				}
 			}
 		}
@@ -115,7 +125,7 @@ namespace DungeonGame.Combat {
 				return;
 			}
 
-			if ( GetUndefeatedTeams().Length <= 1 ) {
+			if ( GetUndefeatedTeams().Length <= 1 && turnState != CombatTurnState.Executing ) {
 				foreach ( Team team in teams ) {
 					team.ResetAllegiances();
 				}

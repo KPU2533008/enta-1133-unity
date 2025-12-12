@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86260b113fc023468d7f107249cfcc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: an iron fist
+  <Name>k__BackingField: Mjolnir
   NumDice: 3
   Faces: 5
   Description: A hammer forged from godly metals, once wielded by the God of Thunder,

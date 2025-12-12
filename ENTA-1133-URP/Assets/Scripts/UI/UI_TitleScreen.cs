@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UI_TitleScreen : MonoBehaviour {
 	public void QuitGame() {
@@ -10,9 +11,13 @@ public class UI_TitleScreen : MonoBehaviour {
 #endif
 	}
 
+	public void LoadScene(string scene) {
+		SceneManager.LoadScene(scene);
+	}
+
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
 	void Start() {
-
+		Cursor.lockState = CursorLockMode.None;
 	}
 
 	// Update is called once per frame

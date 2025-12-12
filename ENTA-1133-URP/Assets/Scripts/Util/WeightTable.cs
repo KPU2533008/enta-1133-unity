@@ -5,8 +5,6 @@ using UnityEngine;
 namespace DungeonGame.Util {
 	public class WeightTable<T> : SerializableDictionary<T, int> {
 
-		//[SerializeField]
-
 		private int SumTableWeights() {
 			int totalWeight = 0;
 			foreach ( KeyValuePair<T, int> kvp in this ) {
@@ -24,6 +22,7 @@ namespace DungeonGame.Util {
 				remainingDistance -= kvp.Value;
 				if ( remainingDistance < 0 ) {
 					result = kvp.Key;
+					break;
 				}
 			}
 

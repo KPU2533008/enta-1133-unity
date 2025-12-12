@@ -7,9 +7,7 @@ using UnityEngine;
 namespace DungeonGame.Item {
 	public class DamageItem : Consumable {
 
-		public DamageItem() {
-			TargetAllegiance = Allegiance.Hostile;
-		}
+		public override Allegiance TargetAllegiance => Allegiance.Hostile;
 
 		public override IEnumerator OnUse(Combatant user, Combatant target) {
 			yield return base.OnUse(user, target);

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Bandage
-  NumDice: 4
+  NumDice: 5
   Faces: 2
   Description: A bandage that restores @DIE_TYPE HP to a target.
   UsageText: '@USER puts a @ITEM on @TARGET! They feel much better.'
